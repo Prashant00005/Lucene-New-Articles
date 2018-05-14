@@ -1,0 +1,15 @@
+set title "Comparison of indexing and searching strategies"
+set ylabel "Precision"
+set xlabel "Recall"
+set xrange [0:1]
+set yrange [0:.75]
+set xtics 0,.2,1
+set ytics 0,.2,1
+set grid
+
+FILES = system("ls -1 rp_data_*")
+LABEL = system("ls -1 rp_data_* | sed -e 's/rp_data_//' -e 's/_/-/g'")
+
+plot for [i=1:words(FILES)] word(FILES,i) u 1:3 title word(LABEL,i) w linespoints
+# plot 'rp_data_StandardEnglish'using 1:3 title "StandardEnglish" with lines 
+pause -1 "hit return"
